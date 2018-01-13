@@ -29,8 +29,8 @@ int main(int argc,char **argv){
 	
 
 	struct timeval startwtime, endwtime;
-    double time;
-    int i,j,a,b,l;
+	double time;
+	int i,j,a,b,l;
 	
 	//memory allocation for data
 	double **points;
@@ -101,16 +101,10 @@ int main(int argc,char **argv){
 					
 						MPI_Send(&points[j][l],1,MPI_DOUBLE,next,rank+next,MPI_COMM_WORLD);
 						MPI_Recv(&recvPoints[j][l],1,MPI_DOUBLE,prev,rank+prev,MPI_COMM_WORLD,&stat);
-				
-				
-				
 				}
 				else{
-					
 						MPI_Send(&recvPoints[j][l],1,MPI_DOUBLE,next,rank+next,MPI_COMM_WORLD);
-						MPI_Recv(&recvPoints[j][l],1,MPI_DOUBLE,prev,rank+prev,MPI_COMM_WORLD,&stat);
-					
-					
+						MPI_Recv(&recvPoints[j][l],1,MPI_DOUBLE,prev,rank+prev,MPI_COMM_WORLD,&stat);	
 				}
 			}
 		}
