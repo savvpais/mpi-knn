@@ -30,8 +30,8 @@ int main(int argc,char **argv){
 	MPI_Status stats[2];
 
 	struct timeval startwtime, endwtime;
-    double time;
-    int i,j,a,b,l;
+	double time;
+	int i,j,a,b,l;
 	
 	//memory allocation for data
 	double **points;
