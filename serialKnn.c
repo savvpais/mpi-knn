@@ -19,8 +19,8 @@ int main(int argc,char **argv){
 	
 	
 	struct timeval startwtime, endwtime;
-    double time;
-    int i,j;
+	double time;
+	int i,j;
 	
 	//memory allocation for data
 	double **points;
@@ -91,7 +91,6 @@ void knn(double **points, int **nearest, double **distance, int k){
 		for(j=0;j<60000;j++){
 			if(i!=j){
 				dist=calcDist(points[i],points[j]);
-				
 				for(l=0;l<k;l++){
 					if (dist<distance[i][l]){
 						for(m=k;m>l;m--){
