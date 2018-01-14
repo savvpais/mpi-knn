@@ -4,9 +4,9 @@
 #include <sys/time.h>
 #include <mpi.h>
 
-void test (int **nearest, int rank, int k,int numtasks);
 void knn(double **points,double **recvPoints, int **nearest,double **distance, int k,int numtasks,int offset);
 double calcDist(double *a, double *b);
+void test (int **nearest, int rank, int k,int numtasks);
 
 int main(int argc,char **argv){
 	if(argc!=2){
