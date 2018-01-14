@@ -122,10 +122,10 @@ int main(int argc,char **argv){
 	
 		
 	}
-	//~ if(k==10){
-		//~ printf("Testing in rank %d\n",rank);
-		//~ test(nearest, rank, k, numtasks);
-	//~ }
+	
+	//~ printf("Testing in rank %d\n",rank);
+	//~ test(nearest, rank, k, numtasks);
+
 	MPI_Finalize();
 }
 
@@ -175,14 +175,14 @@ void test (int **nearest, int rank, int k,int numtasks){
 	file=fopen("nearest.txt","r");
 	int n,temp;
 	
-	 for (i=0;i<60000;i++){
-        for (j=0;j<11;j++){
-            n = fscanf(file,"%d",&temp);
-            if (i>=(60000/numtasks*rank) && i<(60000/numtasks*(rank+1))) {
-                check[i-(60000/numtasks)*rank][j] = temp;
-            }
-        }
-    }
+	for (i=0;i<60000;i++){
+		for (j=0;j<11;j++){
+		    n = fscanf(file,"%d",&temp);
+		    if (i>=(60000/numtasks*rank) && i<(60000/numtasks*(rank+1))) {
+			check[i-(60000/numtasks)*rank][j] = temp;
+		    }
+		}
+    	}
 	
 	fclose(file);
     
@@ -193,22 +193,22 @@ void test (int **nearest, int rank, int k,int numtasks){
 			check[i][j]=check[i][j]-1;	//match matlab indexing with c indexing
 		}
 	}
-
+	if(k>11) k=11;
 	for (i=0;i<60000/numtasks;i++){
-        for (j=0;j<11;j++){
-            if ( nearest[i][j] == check[i][j] ){
-                continue;
-            }
-            else{
-                printf("rank:%d \n",rank);
-                printf("%d %d \n",i, j);
-                printf("check: %d \n",check[i][j]);
-                printf("nearest: %d \n",nearest[i][j]);
-                printf("Test failed in process %d \n",rank);   
-                return;         
-            }
-        }
-    }
+		for (j=0;j<k;j++){
+		    if ( nearest[i][j] == check[i][j] ){
+			continue;
+		    }
+		    else{
+			printf("rank:%d \n",rank);
+			printf("%d %d \n",i, j);
+			printf("check: %d \n",check[i][j]);
+			printf("nearest: %d \n",nearest[i][j]);
+			printf("Test failed in process %d \n",rank);   
+			return;         
+		    }
+		}
+    	}
     
     printf("Test passed in process %d \n",rank);
     
