@@ -125,7 +125,7 @@ int main(int argc,char **argv){
 
 	//~ printf("Testing in rank %d\n",rank);
 	//~ test(nearest, rank, k, numtasks);
-    MPI_Finalize();
+	MPI_Finalize();
 }
 
 
