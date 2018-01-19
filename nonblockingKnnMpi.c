@@ -60,7 +60,7 @@ int main(int argc,char **argv){
 
 	//load data;
 	FILE *file;
-	file=fopen("train_X.txt","r");
+	file=fopen("points.txt","r");
 	int n,counter=0;
 	double temp;
 	
